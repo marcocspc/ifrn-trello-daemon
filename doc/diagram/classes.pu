@@ -1,0 +1,77 @@
+@startuml
+
+' Estrutura '
+
+Package Singleton {
+	Class ConnectionSingleton {
+		getSQLConnection()
+		getTrelloConnection()
+	}
+
+	Class ConfigSingleton {
+		getConfig()
+	} 
+
+	Class SQLConfigSingleton
+}
+
+Package DAO {
+	Interface ChamadoDAO {
+		insertChamado(chamado)
+		selectChamado(chamado)
+		deleteChamado(chamado)
+		updateChamado(chamadoVelho, chamadoNovo)
+	} 
+
+	Class TrelloChamadoDAO
+	Class SUAPChamadoDAO
+	Class SQLChamadoDAO
+} 
+
+Package Domain {
+	Class Chamado {
+		matriculaRequisitante
+		titulo
+		descricao
+		estado{aberto,resolvendo,resolvido}
+	}
+
+	Class SQLConfig {
+		sqlDBName
+		sqlDBUser
+		sqlDBpass
+		sqlChamadoTable
+	}
+
+	Class TrelloConfig {
+		trelloApiKey
+		trelloApiSecret
+		trelloToken
+		trelloToken_Secret
+		trelloBoard
+		trelloTodoList
+		trelloDoingList
+		trelloDoneList
+	}
+}
+
+Package SUAPModule {
+	Class SUAPDaemon
+	Class SUAPConfigSingleton
+} 
+
+Package TrelloModule {
+	Class TrelloDaemon
+	Class TrelloConfigSingleton
+}
+
+' Relacionamentos '
+
+ChamadoDAO <|-- TrelloChamadoDAO
+ChamadoDAO <|-- SUAPChamadoDAO
+ChamadoDAO <|-- SQLChamadoDAO
+ConfigSingleton <|-- SQLConfigSingleton
+ConfigSingleton <|-- TrelloConfigSingleton
+ConfigSingleton <|-- SUAPConfigSingleton
+
+@enduml
