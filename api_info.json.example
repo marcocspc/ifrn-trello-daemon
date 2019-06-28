@@ -1,0 +1,10 @@
+{
+	"api_key": "xxx",
+	"api_secret": "xxx",
+	"token": "xxx",
+	"token_secret": "xxx",
+	"board": "2",
+	"todo": "0",
+	"doing": "1",
+	"done": "2"
+}
