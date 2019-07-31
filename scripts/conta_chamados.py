@@ -1,5 +1,10 @@
 from trello import TrelloClient
 import json
+
+#Include parent dir on import
+import sys
+sys.path.insert(0, '..')
+
 from DAO import TrelloChamadoDAO
 from Domain import Chamado
 
